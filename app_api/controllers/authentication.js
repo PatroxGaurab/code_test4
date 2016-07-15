@@ -114,7 +114,7 @@ module.exports.login_external_callback = function(req, res) {
   passport.authenticate('google', {
                     successRedirect : '/profile',
                     failureRedirect : '/login_external'
-            })(req, res);
+            },function(err,user,info){res.redirect('/profile');})(req, res);
 
 };
 

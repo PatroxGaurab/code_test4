@@ -47,7 +47,8 @@ console.log("In Passport");
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Google
         process.nextTick(function() {
-console.log("In Passport Tick");
+
+	    console.log("In Passport Tick");
             // try to find the user based on their google id
             User.findOne({ 'google.id' : profile.id }, function(err, user) {
                 if (err)
