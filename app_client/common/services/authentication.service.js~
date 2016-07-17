@@ -56,9 +56,14 @@
     };
 
     login_external = function(user) {
-      return $http.post('/api/login_external', user).success(function(data) {
-        console.log("hihihih");
+      return $http.get('/api/login_external', user).success(function(data) {
+        saveToken(data.token);
       });
+    };
+
+    var googleCallback = function (routeParams) {
+      return $http.get('/api/auth/google?code='+routeParams.code
+      );
     };
 
     logout = function() {
@@ -73,7 +78,8 @@
       register : register,
       login : login,
       logout : logout,
-      login_external : login_external
+      login_external : login_external,
+      googleCallback : googleCallback
     };
   }
 

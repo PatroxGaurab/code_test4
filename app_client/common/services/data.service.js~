@@ -8,15 +8,19 @@
   function meanData ($http, authentication) {
 
     var getProfile = function (routeParams) {
-      return $http.get('/api/profile?sso='+sso, {
+      return $http.get('/api/profile?sso='+routeParams.sso+'&sig='+routeParams.sig, {
         headers: {
           Authorization: 'Bearer '+ authentication.getToken()
         }
       });
     };
-
+    var googleCallback = function (routeParams) {
+      return $http.get('/api/auth/google?code=4/Gw-m3sOwZycRUO-aW3K1rMn811J95gM_lKpk9f3QGio'
+      );
+    };
     return {
-      getProfile : getProfile
+      getProfile : getProfile,
+      googleCallback : googleCallback
     };
   }
 

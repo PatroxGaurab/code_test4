@@ -2,15 +2,30 @@
   
   angular
     .module('meanApp')
-    .controller('login_externalCtrl', ['$location','$scope','authentication',login_externalCtrl]);
+    .controller('login_externalCtrl', ['$location','$scope','authentication','$routeParams','meanData',login_externalCtrl]);
 
-    function login_externalCtrl ($location,$scope,authentication) {
+    function login_externalCtrl ($location,$scope,authentication,$routeParams, meanData) {
 
 
 	var vm = this;
 
 	var googleUser = {};
-		  vm.attachSignin = function() {
+
+    authentication.googleCallback($routeParams)
+      .success(function(data) {
+        //vm.user = data;
+	//var json_res=data;
+	//alert();
+	//var redirect_to=data.redirect_to;
+	//alert(JSON.stringify(data));
+	$location.path('profile');	
+	//window.location = redirect_to;
+      })
+      .error(function (e) {
+        console.log(e);
+      });
+
+		  //vm.attachSignin = function() {
 			      /*authentication
 				.login_external(googleUser)
 				.error(function(err){
@@ -19,8 +34,8 @@
 				.then(function(){
 				  //$location.path('profile');
 				});*/
-				$location.path('/api/login_external');
-		  }
+				//$location.path('/api/login_external');
+		 // }
 /*	    gapi.load('auth2', function(){
 	      // Retrieve the singleton for the GoogleAuth library and set up the client.
 	      auth2 = gapi.auth2.init({

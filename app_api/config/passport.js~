@@ -51,7 +51,6 @@ console.log("In Passport");
 	    console.log("In Passport Tick");
             // try to find the user based on their google id
             User.findOne({ 'google.id' : profile.id }, function(err, user) {
-console.log(profile);
                 if (err)
                     return done(err);
 

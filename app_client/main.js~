@@ -29,7 +29,7 @@
         controller: 'login_externalCtrl',
         controllerAs: 'vm'
       })
-      .when('/login_external/callback', {
+      .when('/api/login_external/callback', {
         templateUrl: '/auth/login_external/login_external.view.html',
         controller: 'login_externalCtrl',
         controllerAs: 'vm'
@@ -37,6 +37,11 @@
       .when('/api/login_external', {
 	templateUrl: '/auth/login_external/login_external.view.html',
         controller: 'login_externalCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/username', {
+	templateUrl: '/auth/username/username.view.html',
+        controller: 'usernameCtrl',
         controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/'});
@@ -48,6 +53,9 @@
   function run($rootScope, $location, authentication, $http) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
+        $location.path('/');
+      }
+      else if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
         $location.path('/');
       }
     });

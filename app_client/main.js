@@ -39,6 +39,11 @@
         controller: 'login_externalCtrl',
         controllerAs: 'vm'
       })
+      .when('/username', {
+	templateUrl: '/auth/username/username.view.html',
+        controller: 'usernameCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API
@@ -48,6 +53,9 @@
   function run($rootScope, $location, authentication, $http) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
+        $location.path('/');
+      }
+      else if ($location.path() === '/username' && !authentication.isLoggedIn()) {
         $location.path('/');
       }
     });

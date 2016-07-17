@@ -2,9 +2,9 @@
   
   angular
     .module('meanApp')
-    .controller('login_externalCtrl', ['$location','$scope','authentication','$routeParams','meanData',login_externalCtrl]);
+    .controller('usernameCtrl', ['$location','$scope','authentication','$routeParams','meanData',usernameCtrl]);
 
-    function login_externalCtrl ($location,$scope,authentication,$routeParams, meanData) {
+    function usernameCtrl ($location,$scope,authentication,$routeParams, meanData) {
 
 
 	var vm = this;
@@ -17,9 +17,9 @@
 	//var json_res=data;
 	//alert();
 	//var redirect_to=data.redirect_to;
-	//alert(JSON.stringify(data));
-	$location.path('username');	
-	//window.location = redirect_to;
+	//alert(JSON.stringify(data));	
+	//$location.path('profile');
+	//window.location = '/profile';
       })
       .error(function (e) {
         console.log(e);

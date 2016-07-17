@@ -14,7 +14,7 @@ router.get('/profile*', auth, ctrlProfile.profileRead);
 
 router.get('/login_external', ctrlAuth.login_external);
 
-router.get('/login_external/callback', ctrlAuth.login_external_callback);
+router.get('/auth/google*', ctrlAuth.login_external_callback);
 
 // authentication
 router.post('/register', ctrlAuth.register);

@@ -14,9 +14,13 @@
         }
       });
     };
-
+    var googleCallback = function (routeParams) {
+      return $http.get('/api/auth/google?code='+routeParams.code
+      );
+    };
     return {
-      getProfile : getProfile
+      getProfile : getProfile,
+      googleCallback : googleCallback
     };
   }
 
